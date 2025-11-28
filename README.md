@@ -1,3 +1,4 @@
+![Screenshot_25-11-2025_3131_localhost](https://github.com/user-attachments/assets/e90a778b-a5f9-44c1-a17e-967e6d8ed737)
 # 📝 Student Records Basic Data Manager
 
 A simple Python console application to manage student names and their marks using basic array/list operations. This was a project for my first computer science course!
