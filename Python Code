@@ -1,0 +1,232 @@
+# The main lists
+names = []
+marks = []
+
+def get_initial_data():
+    print("Starting Program")
+    
+    try:
+        n = int(input("How many students are you entering right now? "))
+    except ValueError:
+        print("Not a number. Starting with 0.")
+        n = 0
+        
+    i = 0
+    while i < n:
+        print("")
+        print("Student #")
+        print(i + 1)
+        student_name = input("Enter student name: ")
+        
+        while True:
+            try:
+                student_mark = float(input("Enter their mark (0 to 100): "))
+                if student_mark >= 0 and student_mark <= 100:
+                    break
+                else:
+                    print("Mark must be between 0 and 100.")
+            except ValueError:
+                print("Not a valid number!")
+
+        names.append(student_name)
+        marks.append(student_mark)
+        i = i + 1
+        
+    print("Initial data entry finished.")
+
+def insert_data():
+    print("")
+    print("Option 1: Insert")
+    
+    list_length = len(names)
+    
+    if list_length == 0:
+        pos = 0
+    else:
+        print("Current list length is")
+        print(list_length)
+        print("Positions start at 0 and go up to")
+        print(list_length)
+        try:
+            pos = int(input("Enter the position where you want to add the student: "))
+            if pos < 0 or pos > list_length:
+                print("Error: Bad position. Cancelling.")
+                return
+        except ValueError:
+            print("Error: Not a number. Cancelling.")
+            return
+
+    new_name = input("New student name: ")
+    
+    while True:
+        try:
+            new_mark = float(input("New student mark: "))
+            if new_mark >= 0 and new_mark <= 100:
+                break
+            else:
+                print("Mark error. Try again.")
+        except ValueError:
+            print("Not a number!")
+    
+    names.insert(pos, new_name)
+    marks.insert(pos, new_mark)
+    print("Added")
+    print(new_name)
+    print("at position")
+    print(pos)
+
+
+def delete_data():
+    print("")
+    print("Option 2: Delete")
+    list_length = len(names)
+    
+    if list_length == 0:
+        print("List is empty, can't delete!")
+        return
+        
+    print("List size is")
+    print(list_length)
+    print("Indices go from 0 to")
+    print(list_length - 1)
+    
+    try:
+        pos = int(input("Enter the index of the student to DELETE: "))
+        
+        if pos >= 0 and pos < list_length:
+            
+            deleted_name = names.pop(pos)
+            marks.pop(pos) 
+            print("Successfully deleted:")
+            print(deleted_name)
+            print("at index")
+            print(pos)
+            
+        else:
+            print("Error: Index is outside the list.")
+            
+    except ValueError:
+        print("Error: Not a valid number.")
+
+def search_data():
+    print("")
+    print("Option 3: Search")
+    if len(names) == 0:
+        print("List is empty!")
+        return
+        
+    search_name = input("Enter the name to search for: ")
+    
+    try:
+        index_found = names.index(search_name)
+        mark_found = marks[index_found] 
+        
+        print("")
+        print("FOUND!")
+        print(search_name)
+        print("is at index")
+        print(index_found)
+        print("Their mark is:")
+        print(mark_found)
+        
+    except ValueError:
+        print("Sorry,")
+        print(search_name)
+        print("was NOT found.")
+
+
+def update_data():
+    print("")
+    print("Option 4: Update Mark")
+    if len(names) == 0:
+        print("List is empty!")
+        return
+        
+    update_name = input("Enter the name of the student whose mark you want to change: ")
+    
+    try:
+        pos = names.index(update_name)
+        
+        print("Current mark for")
+        print(update_name)
+        print("is")
+        print(marks[pos])
+        
+        while True:
+            try:
+                new_mark = float(input("Enter the NEW mark: "))
+                if new_mark >= 0 and new_mark <= 100:
+                    break
+                else:
+                    print("Mark error. Try again.")
+            except ValueError:
+                print("Not a number!")
+
+        marks[pos] = new_mark
+        print("")
+        print("Mark for")
+        print(update_name)
+        print("is now updated to")
+        print(new_mark)
+        
+    except ValueError:
+        print("Student")
+        print(update_name)
+        print("not found.")
+
+
+def traverse_data():
+    print("")
+    print("Option 5: Display All Records (Traverse)")
+    if len(names) == 0:
+        print("The list is empty. Nothing to display.")
+        return
+        
+    print("-------------------------")
+    print("Index | Name | Mark")
+    print("-------------------------")
+
+    i = 0
+    while i < len(names):
+        name_at_i = names[i]
+        mark_at_i = marks[i]
+        print(i, "|", name_at_i, "|", mark_at_i)
+        i = i + 1
+        
+    print("-------------------------")
+
+
+def main_program():
+    get_initial_data() 
+    
+    while True:
+        print("")
+        print("My Student Manager Menu:")
+        print("1. Insert (Add a student)")
+        print("2. Delete (Remove a student)")
+        print("3. Search (Find a student's info)")
+        print("4. Update (Change a student's mark)")
+        print("5. Display (Show everyone)")
+        print("6. Exit")
+        print("-------------------------------")
+
+        choice = input("Enter a choice (1-6): ")
+
+        if choice == '1':
+            insert_data()
+        elif choice == '2':
+            delete_data()
+        elif choice == '3':
+            search_data()
+        elif choice == '4':
+            update_data()
+        elif choice == '5':
+            traverse_data()
+        elif choice == '6':
+            print("")
+            print("Done! Bye!")
+            break
+        else:
+            print("Not a valid option. Try again.")
+
+main_program()
