@@ -50,4 +50,4 @@ The program uses two parallel lists: `names` and `marks`. All operations ensure 
 * The importance of **matching indexes** when performing operations like deletion and update on parallel lists.
 
 ---
-*Created by [Your Name] for [Course Name, e.g., CSC 101] - Fall [Year]*
+*Created by SUJAL SAHA for CSE1021 - Fall 2025*
